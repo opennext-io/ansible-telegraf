@@ -53,6 +53,7 @@
   apt:
     name: telegraf
     state: installed
+    update_cache: yes
   notify: "Restart Telegraf"
   become: yes
   tags:
