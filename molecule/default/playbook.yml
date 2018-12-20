@@ -4,12 +4,12 @@
     - name: "Installing which on CentOS"
       yum:
         name: which
-        state: installed
+        state: present
       when: ansible_distribution == 'CentOS'
     - name: "Installing wget on Debian"
       apt:
         name: wget
-        state: installed
+        state: present
       when: ansible_distribution == 'Debian'
   roles:
     - role: ansible-telegraf
