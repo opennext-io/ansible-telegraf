@@ -21,18 +21,7 @@
   when: telegraf_agent_aws_tags
   register: ec2_tags
 
-- name: "Copy the template for versions < 0.10.0"
-  template:
-    src: etc-opt-telegraf-telegraf.conf.j2
-    dest: /etc/opt/telegraf/telegraf.conf
-    owner: telegraf
-    group: telegraf
-    mode: 0640
-  become: yes
-  when: telegraf_agent_version is version_compare('0.10.0', '<')
-  notify: "Restart Telegraf"
-
-- name: "Copy the template for versions >= 0.10.0"
+- name: "Copy the telegraf config template"
   template:
     src: telegraf.conf.j2
     dest: /etc/telegraf/telegraf.conf
@@ -40,7 +29,6 @@
     group: telegraf
     mode: 0640
   become: yes
-  when: telegraf_agent_version is version_compare('0.10.0', '>=')
   notify: "Restart Telegraf"
 
 - name: "Copy telegraf extra plugins"
